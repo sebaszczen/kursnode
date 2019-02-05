@@ -1,0 +1,12 @@
+.color
+{
+color: blueviolet
+}
+.color2{
+  color: yellow
+}
+.color3{
+  color: chocolate;
+  font: bold;
+  border: 2px solid red;
+}

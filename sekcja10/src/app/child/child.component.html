@@ -1,0 +1,7 @@
+<p>child works</p>
+<ul>
+  <li *ngFor="let task of taskList">
+    {{ task }}
+    <button (click)="select(task)">Dodaj</button>
+  </li>
+</ul>

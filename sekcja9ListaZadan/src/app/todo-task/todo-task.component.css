@@ -1,0 +1,12 @@
+li{
+margin: 5px;
+background: aqua;
+}
+.odd-li{
+background: coral;
+margin: 5px;
+}
+.last-li{
+  margin: 5px;
+  background: blue;
+}

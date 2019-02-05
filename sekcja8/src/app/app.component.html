@@ -1,0 +1,48 @@
+<p>property binding</p>
+<div>
+  <input [value]="text" />
+</div>
+
+<p>two way binding</p>
+<div>
+    <input [(ngModel)]="text2"/>
+  {{text2}}
+</div>
+
+<p>Event binding</p>
+<div>
+  <input (click)="click($event)">
+  <button [disabled]="button">Dodaj</button>
+  {{showclick}}
+</div>
+
+<p>-----------Property Binding--------------</p>
+
+<h3 [className]="colorclass">Angular kurs-property binding</h3>
+<img [src]="logourl">
+<input [maxLength]="maxlength" [value]="inputText">
+<button [disabled]="isDisabled" (click)="change()">Dodaj</button>
+
+<p>-----------Event Binding--------------</p>
+
+<h3 [className]="colorclass">event binding</h3>
+<input [disabled]="isDisabled2" (focus)="onFocus()">
+<br>
+<input [disabled]="isDisabled2" [value]="'mouse coordinates'" (click)="onClick($event)" >
+<br>
+<input [disabled]="isDisabled2" [value]="'mouse move'" (mousemove)="onMouseMove($event)">
+<br>
+<input [disabled]="isDisabled2" [value]="'wklej tekst'" (paste)="onPaste()">{{inputText2}}
+<br>
+<button (click)="change2()">Zmiana</button>
+
+
+<p>-------------------------</p>
+<p>Ten pracownik to {{profession}}, a jego umiejetnosc to {{skill}}</p>
+<label for="male">Zawod</label>
+<!-- <input [value]="profession" (input)="inputP($event)"> -->
+<input [(ngModel)]="profession">
+<br>
+<label for="male">Umiejetnosci</label>
+<!-- <input [value]="skill" (input)="inputS($event)"> -->
+<input [(ngModel)]="skill">

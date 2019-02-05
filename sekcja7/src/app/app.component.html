@@ -1,0 +1,74 @@
+<p>Dni tygodnia: </p>
+<ul>
+  <!-- <p *ngfor="let day of weekDays"> -->
+    <ol *ngFor="let day of weekDays; let x= index">
+      {{x}} {{day}}
+    </ol>
+  <!-- </p> -->
+</ul>
+
+<p>Dni tygodnia: </p>
+<ul>
+  <ng-container *ngFor="let day of weekDays; let x= index">
+    <li *ngIf="x%2==0">
+      {{x}} {{day}}
+    </li>
+  </ng-container>
+</ul>
+
+<app-nowy *ngFor="let i of [1,2,3,4]"></app-nowy>
+
+<p>Lista psow</p>
+<ul>
+  <ng-container *ngFor="let dog of dogList">
+    <li *ngIf="dog.age>4">
+      Imie psa: {{dog.name}} ,wiek: {{dog.age}}
+    </li>
+  </ng-container>
+</ul>
+
+<h1>Lista psow z przyskiem</h1>
+<ng-container *ngIf="dogList.length>0; then dogsExist; else noDogs"></ng-container>
+
+<ng-template #dogsExist>
+<ul>
+  <ol *ngFor="let dog of dogList">
+    Imie psa: {{dog.name}}, wiek: {{dog.age}}
+  </ol>
+</ul>
+</ng-template>
+
+<ng-template #noDogs>
+<p>Pieskow nie ma :(</p>
+</ng-template>
+
+<button (click)="addDogs()">Pokaż psy</button>
+<button (click)="removeDogs()">Ukryj psy</button>
+
+
+<h1>Ng switch case</h1>
+<ng-container *ngFor="let day of weekDays">
+<ng-container [ngSwitch]="day">
+<div *ngSwitchCase="'poniedzialek'">Monday</div>
+<div *ngSwitchCase="'wtorek'">thursday</div>
+<div *ngSwitchDefault>oby piątek</div>
+</ng-container>
+</ng-container>
+
+
+<h1>*ngfor vs hidden</h1>
+<button (click)="unvisible()">unvisible</button>
+<button (click)="unhidden()">unhidden</button>
+<p>*ngfor</p>
+<ng-container *ngIf="isVisible">
+<div *ngFor="let day of weekDays2">
+ <div>{{day}}</div>
+</div>
+</ng-container>
+
+<p>hidden</p>
+<div [hidden]="isHidden">
+<div *ngFor="let day of weekDays2">
+ <div>{{day}}</div>
+</div>
+</div>

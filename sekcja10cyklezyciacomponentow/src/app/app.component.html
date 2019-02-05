@@ -1,0 +1,7 @@
+<div *ngIf="show">
+  <app-child [inputText]="title" [inputDog]="dog"></app-child>
+</div>
+<button (click)="changeTitle()">Zmień tytuł</button>
+<button (click)="changeDog()">Zmień psa</button>
+<button (click)="nothing()">Nie zmieniaj</button>
+<button (click)="destroy()">Usuń komponent</button>
