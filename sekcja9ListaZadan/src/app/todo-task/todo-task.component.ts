@@ -24,7 +24,9 @@ export class TodoTaskComponent implements OnInit {
   }
 
   constructor(private TasksService: TasksService) {
+
     this.TasksService.getTaskListObs().subscribe((task:Array<Task>)=>{
+      console.log('tutaj');
       this.taskList=task;
     });
    }

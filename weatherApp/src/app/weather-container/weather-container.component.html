@@ -1,7 +1,14 @@
 <div id="weatherDescription">
-  <h1 id="cityHeader"></h1>
-  <app-weather-main></app-weather-main>
+  <h1 class="cityHeader">{{city!=null?city.name:''}}</h1>
+  <div id="date">{{measurementDate}}</div>
+  <div id="weatherMain">
+    <div id="temperature">{{temperature!=null?(temperature| number:'.0-1')+'&deg;C':''}}</div>
+  </div>
   <hr>
-  <app-bottom-details></app-bottom-details>
-  <app-city-list></app-city-list>
+  <div id="bottomDetails">
+  <div id="windSpeed">{{windSpeed!=null?windSpeed+' m/s' :''}}</div>
+  <div id="humidity">{{humidity!=null?'Humidity level at '+ (humidity |number: '.0-2') +'%':''}}</div>
+  <div id="pressure">{{pressure!=null?'Pressure '+(pressure):''}}</div>
+  <div id="rainfall">{{rainfall!=null?'Suma opadów: '+rainfall+' mm':''}}</div>
+  </div>
 </div>

@@ -1,5 +1,6 @@
-<input class="searchControl" type="text" placeholder="City Name or Zipcode" id="searchInput">
-  <Button class="searchControl" id="searchBtn">Search</Button>
-
+<div id="searchContainer">
+<input [(ngModel)]="cityName" class="searchControl"  type="text" placeholder="City Name or Zipcode" id="searchInput"/>
+  <Button (click)="search()" class="searchControl" id="searchBtn">Search</Button>
+</div>
 
 

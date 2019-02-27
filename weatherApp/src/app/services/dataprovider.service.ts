@@ -1,16 +1,34 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Subject } from "rxjs";
+import { City } from "./../models/city";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DataProviderService {
+  private city: City;
 
-  constructor(private http: HttpClient) { }
+  private cityObs = new Subject<City>();
+  private cityListObs = new BehaviorSubject<Array<City>>([]);
 
-  getAll(): Observable<any> {
-    return this.http.get(`http://localhost:8080/city?name=warszawa`);
+  constructor(private http: HttpClient) {}
+
+  getCityData(cityName: string): void {
+    this.http
+      .get<City>(`http://localhost:8080/city?name=${cityName}`)
+      .subscribe(city => {
+        this.city = city;
+        this.cityObs.next(this.city);
+      });
   }
 
+  getCityObs(): Observable<City> {
+    return this.cityObs.asObservable();
+  }
+
+  getCityListObs(): Observable<Array<City>>{
+    return this.cityListObs.asObservable();
+  }
 }
