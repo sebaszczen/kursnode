@@ -42,13 +42,13 @@ export class WeatherContainerComponent implements OnInit {
     this.rainfall=Math.round(sumaOpadu/sumaOpaduMeasurement);
     this.windSpeed=windSpeed/windSpeedMeasurement;
     this.humidity=humidity/humidityMeasurement;
-    this.measurementDate=this.synopticDataList[0].localDateTime;
+    this.measurementDate=this.synopticDataList[0].data_pomiaru;
   }
 
   constructor(dataProviderService: DataProviderService) {
     dataProviderService.getCityObs().subscribe(city=>{
       this.city=city;
-      this.synopticDataList=city.synopticDataList;
+      this.synopticDataList=city.synopticDataDtoList;
       this.countAverageTemperature();
       this.showWeatherInfo();
     });

@@ -11,15 +11,17 @@ import { Component } from "@angular/core";
 export class AppComponent {
   title = "weatherApp";
 
+  city: City;
   synopticData: SynopticData;
 
   constructor(private dataProvider: DataProviderService) {
     document.body.style.backgroundImage = "url(./assets/default.jpg)";
     this.dataProvider.getCityObs().subscribe(city => {
       if (city != null) {
-        this.synopticData = city.synopticDataList[0];
+        this.city = city;
+        this.synopticData = city.synopticDataDtoList[0];
       }
-    this.setBackgroundPicture();
+      this.setBackgroundPicture();
     });
   }
 
@@ -30,6 +32,7 @@ export class AppComponent {
       this.synopticData.suma_opadu > 0
     ) {
       document.body.style.backgroundImage = "url(./assets/snow.jpg)";
+      document.body.style.background = "url(./assets/snow.jpg)";
     } else if (
       this.synopticData != null &&
       this.synopticData.temperatura > 0 &&

@@ -1,4 +1,4 @@
-import { DataProviderService } from './../services/dataprovider.service';
+import { DataProviderService } from '../services/dataprovider.service';
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
