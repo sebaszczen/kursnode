@@ -10,63 +10,58 @@ import { UserDto } from "src/app/models/userDto";
 export class UserDataService {
   constructor(private routerModule: Router, private httpClient: HttpClient) {}
 
-  createBasicAuthenticationHttpHeader(){
-    let username= 'a';
-    let password= 'a';
-    let basicAuthHeaderString= 'Basic '+ window.btoa(username + ':' + password);
+  createBasicAuthenticationHttpHeader() {
+    let username = "a";
+    let password = "a";
+    let basicAuthHeaderString =
+      "Basic " + window.btoa(username + ":" + password);
     return basicAuthHeaderString;
   }
 
   handleLogin(user: UserDto) {
+    
+    // let basicAuthHeader = this.createBasicAuthenticationHttpHeader();
     // let headers = new HttpHeaders({
-    //   Authorization: "Basic " + btoa("a" + ":" + "a"),
-    //   "X-Requested-With": "XMLHttpRequest",
-    //   username: "ad@gmail.com",
-    //   password: "a"
+    //   Authorization: basicAuthHeader
     // });
-    // let options = { headers: headers};
-
-      let basicAuthHeader = this.createBasicAuthenticationHttpHeader();
-
-    let headers= new HttpHeaders({
-      Authorization: basicAuthHeader;
-    })
 
     let params = new HttpParams()
-    .append("username", "a")
-    .append("password", "a")
-    .append("rolename", "Admin");
+      .append("username", user.username)
+      .append("password", user.password)
+      .append("rolename", "Admin");
 
-    this.httpClient
-      .post("//localhost:8080/login", {
-        //  username: "ad@gmail.com",
-      // password: "a"
-    }, {
-        headers,
-        params,
-         observe: 'response'
-      })
-      .subscribe(response=> {
-        if(response.status==200){
-          this.routerModule.navigate([""]);
+    return this.httpClient
+      .post(
+        "//localhost:8080/login",{},
+        {
+          params,
+          observe: "response"
         }
-      }, error=> {console.log(error)});
+      );
+      // .subscribe(
+      //   response => {
+      //     if (response.status == 200) {
+      //       this.routerModule.navigate([""]);
+      //     }
+      //   },
+      //   error => {
+      //     console.log(error);
+      //   }
+      // );
 
-
-// this.httpClient
-//       .get<City>(`//localhost:8080/cities/warszawa`, {
-//         headers
-//       })
-//       .subscribe(
-//         city => {
-//           console.log(city);
-//           // this.city = city;
-//           // this.cityObs.next(this.city);
-//         },
-//         // (error: HttpErrorResponse) => {
-//         //   console.log("blad: " + error.status);
-//         // }
-//       );
-
+    // this.httpClient
+    //       .get<City>(`//localhost:8080/cities/warszawa`, {
+    //         // headers
+    //       })
+    //       .subscribe(
+    //         city => {
+    //           console.log(city);
+    //           // this.city = city;
+    //           // this.cityObs.next(this.city);
+    //         },
+    //         // (error: HttpErrorResponse) => {
+    //         //   console.log("blad: " + error.status);
+    //         // }
+    //       );
   }
 }
